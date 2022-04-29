@@ -69,7 +69,7 @@ There are two indices defined for the `messages` collection.
 
 Whenever a user asks a question, a `Question` document is added to the `messages` collection.
 
-When a questions is asked, a bot will look for similar questions. When such questions are found, the bot will add a `SimilarQuestion` documnet to the `messages` collection for the top 3 matches.
+When a questions is asked, a bot will look for similar questions. When such questions are found, the bot will add a `SimilarQuestion` document to the `messages` collection for the top 3 matches.
 
 Whenever a user answers a question, an `Answer` document is addes to the `messages` collection.
 
