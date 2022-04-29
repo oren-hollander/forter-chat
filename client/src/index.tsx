@@ -1,13 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Chat } from './chat/Chat'
+// import { Chat } from './chat/Chat'
 import reportWebVitals from './reportWebVitals'
+import './lit-element/chat-view'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <React.StrictMode>
-    <Chat />
+    <>
+      {/* <Chat /> */}
+      <chat-view />{' '}
+    </>
   </React.StrictMode>
 )
 

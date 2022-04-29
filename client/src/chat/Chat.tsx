@@ -10,13 +10,13 @@ type Mode = 'chronologic' | 'grouped'
 export const Chat: FC = () => {
   const [messages, setMessages] = useState<MessageDTO[]>([])
   const [message, setMessage] = useState('')
-  const [selecedQuestionId, setSelectedQuestionId] = useState<string>()
+  const [selectedQuestionId, setSelectedQuestionId] = useState<string>()
   const [mode, setMode] = useState<Mode>('chronologic')
 
   const fetchMessages = useCallback(async () => {
-    const lastSeq = maxBy((message) => message.seq, messages)
+    const lastSeq = maxBy(message => message.seq, messages)
     const incomingMessages = await getMessages(lastSeq?.seq || 0)
-    setMessages((messages) => uniqBy((message) => message.seq, [...messages, ...incomingMessages]))
+    setMessages(messages => uniqBy(message => message.seq, [...messages, ...incomingMessages]))
   }, [messages])
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const Chat: FC = () => {
   }
 
   const answerQuestion = async () => {
-    await answer(selecedQuestionId!, message)
+    await answer(selectedQuestionId!, message)
     setMessage('')
     await fetchMessages()
   }
@@ -57,18 +57,18 @@ export const Chat: FC = () => {
       {mode === 'chronologic' && (
         <ChronologicMessageList
           messages={messages}
-          selectedId={selecedQuestionId}
+          selectedId={selectedQuestionId}
           setSelected={setSelectedQuestionId}
         />
       )}
       {mode === 'grouped' && (
-        <GroupedQuestionList messages={messages} selectedId={selecedQuestionId} setSelected={setSelectedQuestionId} />
+        <GroupedQuestionList messages={messages} selectedId={selectedQuestionId} setSelected={setSelectedQuestionId} />
       )}
 
       <div>
-        <input style={{ width: '25em' }} type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
+        <input style={{ width: '25em' }} type="text" value={message} onChange={e => setMessage(e.target.value)} />
         <button onClick={askQuestion}>Q</button>
-        <button disabled={selecedQuestionId === undefined} onClick={answerQuestion}>
+        <button disabled={selectedQuestionId === undefined} onClick={answerQuestion}>
           A
         </button>
       </div>
