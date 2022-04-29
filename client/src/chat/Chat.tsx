@@ -14,9 +14,9 @@ export const Chat: FC = () => {
   const [mode, setMode] = useState<Mode>('chronologic')
 
   const fetchMessages = useCallback(async () => {
-    const lastSeq = maxBy((message) => message.seq, messages)
+    const lastSeq = maxBy(message => message.seq, messages)
     const incomingMessages = await getMessages(lastSeq?.seq || 0)
-    setMessages((messages) => uniqBy((message) => message.seq, [...messages, ...incomingMessages]))
+    setMessages(messages => uniqBy(message => message.seq, [...messages, ...incomingMessages]))
   }, [messages])
 
   useEffect(() => {
@@ -65,13 +65,15 @@ export const Chat: FC = () => {
         <GroupedQuestionList messages={messages} selectedId={selecedQuestionId} setSelected={setSelectedQuestionId} />
       )}
 
-      <div>
-        <input style={{ width: '25em' }} type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
-        <button onClick={askQuestion}>Q</button>
-        <button disabled={selecedQuestionId === undefined} onClick={answerQuestion}>
-          A
-        </button>
-      </div>
+      {mode === 'chronologic' && (
+        <div>
+          <input style={{ width: '25em' }} type="text" value={message} onChange={e => setMessage(e.target.value)} />
+          <button onClick={askQuestion}>Q</button>
+          <button disabled={selecedQuestionId === undefined} onClick={answerQuestion}>
+            A
+          </button>
+        </div>
+      )}
     </div>
   )
 }
