@@ -114,7 +114,7 @@ The messages display has two views: chronologic and grouped.
 
 ### Asking and answering questions
 
-At the bottom of the chat view there is an input box and two numbers, one for asking and the other for answering a question. To ask a question, the user writes the question in the box and clicks the `Q` button. To answer a question the user selects a question from the list, write the answer in the box and clicks the `A` button.
+At the bottom of the chat view there is an input box and two buttons, one for asking and the other for answering a question. To ask a question, the user writes the question in the box and clicks the `Q` button. To answer a question the user selects a question from the list, write the answer in the box and clicks the `A` button.
 
 ### Cronologic view
 
@@ -122,4 +122,4 @@ In this view the messages are displayed according the their sequence number in c
 
 ### Grouped view
 
-In this view questions and answers are grouped by the question and sorted by latest sequence number of the group
+In this view questions and answers are grouped by question and sorted by the latest sequence number in the group
