@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { Content } from '../widgets/Content'
-import { Header } from '../widgets/Header'
-import { ListItem } from '../widgets/ListItem'
-import { Time } from '../widgets/Time'
-import { AnswerDTO, QuestionDTO } from './api'
+import { Content } from '../../widgets/Content'
+import { Header } from '../../widgets/Header'
+import { ListItem } from '../../widgets/ListItem'
+import { Time } from '../../widgets/Time'
+import { AnswerDTO, QuestionDTO } from '../api'
 import { CommonMessageProps, getMessage } from './Message'
 
 export const Answer: FC<CommonMessageProps> = ({ messageId, messages }) => {

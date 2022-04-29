@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { Content } from '../widgets/Content'
-import { Header } from '../widgets/Header'
-import { ListItem } from '../widgets/ListItem'
-import { Time } from '../widgets/Time'
-import { QuestionDTO } from './api'
+import { Content } from '../../widgets/Content'
+import { Header } from '../../widgets/Header'
+import { ListItem } from '../../widgets/ListItem'
+import { Time } from '../../widgets/Time'
+import { QuestionDTO } from '../api'
 import { getMessage, MessageProps } from './Message'
 
 export const Question: FC<MessageProps> = ({ messageId, messages, onClick, selected }) => {

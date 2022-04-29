@@ -2,8 +2,8 @@ import { FC, useCallback, useEffect, useState } from 'react'
 import { ask, answer, getMessages } from './chatService'
 import { MessageDTO } from './api'
 import { maxBy, uniqBy } from 'lodash/fp'
-import { ChronologicMessageList } from './ChronologicMessageList'
-import { GroupedQuestionList } from './GroupedQuestionList'
+import { ChronologicMessageList } from './chronologic/ChronologicMessageList'
+import { GroupedQuestionList } from './grouped/GroupedQuestionList'
 
 type Mode = 'chronologic' | 'grouped'
 
@@ -55,25 +55,23 @@ export const Chat: FC = () => {
       </div>
 
       {mode === 'chronologic' && (
-        <ChronologicMessageList
-          messages={messages}
-          selectedId={selecedQuestionId}
-          setSelected={setSelectedQuestionId}
-        />
-      )}
-      {mode === 'grouped' && (
-        <GroupedQuestionList messages={messages} selectedId={selecedQuestionId} setSelected={setSelectedQuestionId} />
+        <>
+          <ChronologicMessageList
+            messages={messages}
+            selectedId={selecedQuestionId}
+            setSelected={setSelectedQuestionId}
+          />
+          <div>
+            <input style={{ width: '25em' }} type="text" value={message} onChange={e => setMessage(e.target.value)} />
+            <button onClick={askQuestion}>Q</button>
+            <button disabled={selecedQuestionId === undefined} onClick={answerQuestion}>
+              A
+            </button>
+          </div>
+        </>
       )}
 
-      {mode === 'chronologic' && (
-        <div>
-          <input style={{ width: '25em' }} type="text" value={message} onChange={e => setMessage(e.target.value)} />
-          <button onClick={askQuestion}>Q</button>
-          <button disabled={selecedQuestionId === undefined} onClick={answerQuestion}>
-            A
-          </button>
-        </div>
-      )}
+      {mode === 'grouped' && <GroupedQuestionList messages={messages} />}
     </div>
   )
 }
