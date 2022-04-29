@@ -110,7 +110,7 @@ The client is developed using React as a single page application. The main `Chat
 
 3. Display the messages
 
-The messages display has two views: chnologic and grouped.
+The messages display has two views: chronologic and grouped.
 
 ### Asking and answering questions
 
