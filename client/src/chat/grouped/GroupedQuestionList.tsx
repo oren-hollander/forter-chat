@@ -10,7 +10,7 @@ interface GroupedQuestionListProps {
 }
 
 export const GroupedQuestionList: FC<GroupedQuestionListProps> = ({ messages }) => {
-  const latestTs = (messages: MessageDTO[]): string => maxBy(message => message.ts, messages)!.ts
+  const latestSeq = (messages: MessageDTO[]): number => maxBy(message => message.seq, messages)!.seq
 
   const questionId = (message: MessageDTO) => {
     if (isQuestion(message)) {
@@ -32,7 +32,7 @@ export const GroupedQuestionList: FC<GroupedQuestionListProps> = ({ messages }) 
     }
   }
 
-  const byQuestion = flow(groupBy(questionId), values, sortBy(latestTs), map(sortBy(typeOrder)))(messages)
+  const byQuestion = flow(groupBy(questionId), values, sortBy(latestSeq), map(sortBy(typeOrder)))(messages)
 
   return (
     <div>
