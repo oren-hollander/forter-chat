@@ -1,4 +1,4 @@
-import { take, sortBy, filter, map } from 'lodash/fp'
+import { flow, take, sortBy, filter, map } from 'lodash/fp'
 import { FC } from 'react'
 import { Content } from '../../widgets/Content'
 import { Header } from '../../widgets/Header'
@@ -13,10 +13,12 @@ export const SimilarQuestion: FC<CommonMessageProps> = ({ messageId, messages })
   const { ts, questionId, similarQuestionId } = getMessage<SimilarQuestionDTO>(messageId, messages)
   const question = getMessage<QuestionDTO>(questionId, messages)
   const similarQuestion = getMessage<QuestionDTO>(similarQuestionId, messages)
-  const answers = take(
-    3,
-    sortBy((answer: AnswerDTO) => answer.seq, filter(isAnswer, messages))
-  )
+  const answers = flow(
+    filter(isAnswer),
+    filter(answer => answer.questionId === question.id || answer.questionId === similarQuestion.id),
+    sortBy(answer => answer.seq),
+    take(3)
+  )(messages)
 
   return (
     <ListItem type="similar">
